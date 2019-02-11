@@ -214,9 +214,11 @@ function handleEcho(messageId, appId, metadata) {
 function handleDialogFlowAction(sender, action, messages, contexts, parameters) {
     switch (action) {
         case "job-apply-details":
+        console.log("job-apply-details action")
             if (isDefined(contexts[0]) &&
                 (contexts[0].name.includes('job-apply') || contexts[0].name.includes('job-apply-details_dialog_context'))
                 && contexts[0].parameters) {
+                console.log("context inlcudes job-apply or job-apply-detials")
                 let phone_number = (isDefined(contexts[0].parameters.fields['phone'])
                     && contexts[0].parameters.fields['phone'] != '') ? contexts[0].parameters.fields['phone'].stringValue : '';
                 let user_name = (isDefined(contexts[0].parameters.fields['name'])
@@ -235,7 +237,9 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
                         '.<br> Years of experience: ' + years_of_experience + '.' +
                         '.<br> Phone number: ' + phone_number + '.';
 
+                    console.log("email is generated")
                     sendEmail('New job application', emailContent);
+                    console.log("email sent succesfully");
 
                     handleMessages(messages, sender);
                 } else {
@@ -245,6 +249,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
             break;
         default:
             //unhandled action, just send back the text
+            console.log("default case for action")
             handleMessages(messages, sender);
     }
 }
