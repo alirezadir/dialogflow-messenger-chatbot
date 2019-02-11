@@ -6,5 +6,8 @@ module.exports = {
     GOOGLE_PROJECT_ID: process.env.GOOGLE_PROJECT_ID,
     DF_LANGUAGE_CODE: process.env.DF_LANGUAGE_CODE,
     GOOGLE_CLIENT_EMAIL: process.env.GOOGLE_CLIENT_EMAIL,
-    GOOGLE_PRIVATE_KEY: process.env.GOOGLE_PRIVATE_KEY
+    GOOGLE_PRIVATE_KEY: process.env.GOOGLE_PRIVATE_KEY, 
+    SENDGRID_API_KEY: process.env.SENGRID_API_KEY,
+    EMAIL_TO:process.env.EMAIL_TO, 
+    EMAIL_FROM: process.env.EMAIL_FROM
 };
