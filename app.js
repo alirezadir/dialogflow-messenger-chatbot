@@ -795,6 +795,10 @@ function receivedPostback(event) {
             //user wants to chat
             sendTextMessage(senderID, "I love chatting too. Do you have any other questions for me?");
             break;
+        case 'JOB_APPLY':
+            //get feedback with new jobs
+			sendToDialogFlow(senderID, 'job openings');
+            break;
         default:
             //unindentified payload
             sendTextMessage(senderID, "I'm not sure what you want. Can you be more specific?");
