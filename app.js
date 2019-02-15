@@ -409,7 +409,7 @@ function handleDialogFlowResponse(sender, response) {
 async function sendToDialogFlow(sender, textString, params) {
 
     console.log("sending a message to dialogFlow with sender id %s and the text: %s", sender, textString);
-    
+
     sendTypingOn(sender);
 
     try {
@@ -799,7 +799,7 @@ function receivedPostback(event) {
             break;
         case 'JOB_APPLY':
             //get feedback with new jobs
-			sendToDialogFlow(senderID, 'do you have any job openings?');
+			sendToDialogFlow(senderID, "do you have any job openings?");
             break;
         default:
             //unindentified payload
