@@ -2,4 +2,4 @@ curl -X POST -H "Content-Type: application/json" -d '{
     "get_started":{
     "payload":"GET_STARTED"
   }
-}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=EAAEkVksTW7MBAMmHKXZCard76fmcXeZAkCh7UgWKUpCTJHOYI6F9Wljd62yLD6osumzohcx0xPCKZCUYQuj46LZBFz23bYcEaIoHSkcppMPoHkZBnynPeAIEeFdRZBknXHhouswgpHBgpvz4QFpANGjUPkN8YBz8jW5jGQ85ZBXsAZDZD"
+}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=INSERT-ACCESS-TOKEN-HERE"
