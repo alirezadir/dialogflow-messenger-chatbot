@@ -48,7 +48,7 @@ if (!config.EMAIL_TO) { //sending email
 
 
 // app.set('port', (process.env.PORT || 5000))
-var port_number = server.listen(process.env.PORT || 3000);
+var port_number = process.env.PORT || 3000;
 app.listen(port_number);
 
 //verify request came from facebook
