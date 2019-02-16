@@ -9,5 +9,6 @@ module.exports = {
     GOOGLE_PRIVATE_KEY: JSON.parse(process.env.GOOGLE_PRIVATE_KEY), 
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
     EMAIL_TO:process.env.EMAIL_TO, 
-    EMAIL_FROM: process.env.EMAIL_FROM
+    EMAIL_FROM: process.env.EMAIL_FROM,
+    WEATHER_API_KEY: process.env.WEATHER_API_KEY
 };
