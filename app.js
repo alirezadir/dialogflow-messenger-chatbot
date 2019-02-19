@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const app = express();
 const uuid = require('uuid');
+const pg = require('pg');
+pg.defaults.ssl = true;
 
 
 // Messenger API parameters
@@ -49,7 +51,9 @@ if (!config.WEATHER_API_KEY) { //weather api key
     throw new Error('missing WEATHER_API_KEY');
 }
 
-
+if (!config.PG_CONFIG) { //pg config
+    throw new Error('missing PG_CONFIG');
+}
 
 // app.set('port', (process.env.PORT || 5000))
 var port_number = process.env.PORT || 3000;
@@ -882,8 +886,36 @@ function greetUserText(userId) {
             if (user.first_name) {
                 console.log("FB user: %s %s, %s",
                     user.first_name, user.last_name, user.gender);
+                    var pool = new pg.Pool(config.PG_CONFIG);
+                    pool.connect(function(err, client, done) {
+                        if (err) {
+                            return console.error('Error acquiring client', err.stack);
+                        }
+                        var rows = [];
+                        client.query(`SELECT fb_id FROM users WHERE fb_id='${userId}' LIMIT 1`,
+                            function(err, result) {
+                                if (err) {
+                                    console.log('Query error: ' + err);
+                                } else {
+    
+                                    if (result.rows.length === 0) {
+                                        let sql = 'INSERT INTO users (fb_id, first_name, last_name, profile_pic) ' +
+                                            'VALUES ($1, $2, $3, $4)';
+                                        client.query(sql,
+                                            [
+                                                userId,
+                                                user.first_name,
+                                                user.last_name,
+                                                user.profile_pic
+                                            ]);
+                                    }
+                                }
+                            });
+    
+                    });
+                    pool.end();
 
-                sendTextMessage(userId, "Welcome " + user.first_name + '!');
+                sendTextMessage(userId, "Welcome " + user.first_name + " " +user.last_name + '!');
             } else {
                 console.log("Cannot get data for fb user with id",
                     userId);
